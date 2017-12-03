@@ -110,4 +110,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: Forest
+  typeWeights: []
   border: 0

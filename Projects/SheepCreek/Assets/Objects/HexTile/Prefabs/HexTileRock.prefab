@@ -110,4 +110,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: Rock
+  typeWeights:
+  - type: Rock
+    weight: 1
+  - type: Dirt
+    weight: 6
+  - type: Grass
+    weight: 1
+  - type: Farm
+    weight: 1
   border: 0

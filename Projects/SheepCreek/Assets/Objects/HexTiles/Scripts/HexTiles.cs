@@ -7,7 +7,13 @@ public class HexTiles : MonoBehaviour {
 	private static readonly float sine = Mathf.Sin(Mathf.PI / 6.0f);
 	
 
-	public List<HexTile> hexTilePrefabs;
+	[System.Serializable]
+	public struct HexTileWeight {
+		public HexTile hexTile;
+		public float weight;
+	}
+
+	public List<HexTileWeight> hexTileWeights;
 	public float radius;
 	public float scale;
 
@@ -58,7 +64,7 @@ public class HexTiles : MonoBehaviour {
 	public float heightMean;
 	public float heightDeviation;
 
-	public List<HexTile> borderHexTilePrefabs;
+	public List<HexTileWeight> borderHexTileWeights;
 	public int borderWidth;
 	
 
@@ -84,7 +90,7 @@ public class HexTiles : MonoBehaviour {
 			}
 		}
 
-		ShuffleRandom.shuffle(coordinates);
+		ListRandom.shuffle(coordinates);
 
 		// Place tiles.
 		foreach(Coordinate coordinate in coordinates) {
@@ -94,7 +100,7 @@ public class HexTiles : MonoBehaviour {
 			position.y = calculateHeight(coordinate.u, coordinate.v);
 
 			if(accept(position)) {
-				HexTile hexTile = Instantiate(hexTilePrefabs[Random.Range(0, hexTilePrefabs.Count)], position, rotation, transform);
+				HexTile hexTile = Instantiate(selectHexTile(coordinate.u, coordinate.v), position, rotation, transform);
 				hexTile.transform.localScale = new Vector3(scale, 10.0f, scale);
 				hexTile.name = "HexTile " + coordinate.u + " " + coordinate.v;
 				
@@ -120,7 +126,7 @@ public class HexTiles : MonoBehaviour {
 
 				position.y = calculateHeight(borderCoordinate.u, borderCoordinate.v);
 			
-				HexTile hexTile = Instantiate(borderHexTilePrefabs[Random.Range(0, borderHexTilePrefabs.Count)], position, rotation, transform);
+				HexTile hexTile = Instantiate(selectBorderHexTile(borderCoordinate.u, borderCoordinate.v), position, rotation, transform);
 				hexTile.transform.localScale = new Vector3(scale, 10.0f, scale);
 				hexTile.name = "Border HexTile " + borderCoordinate.u + " " + borderCoordinate.v;
 
@@ -201,5 +207,87 @@ public class HexTiles : MonoBehaviour {
 		}
 
 		return coordinates;
+	}
+
+
+	private HexTile selectHexTile(int u, int v) {
+		List<HexTile> neighbours = new List<HexTile>();
+		
+		for(int q = -1; q <= 1; q++) {
+			for(int p = -1; p <= 1; p++) {
+				// Skip ourselves and the two outliers.
+				if(p != q) {
+					Coordinate neighbour = new Coordinate(u + p, v + q);
+
+					if(hexTiles.ContainsKey(neighbour)) {
+						neighbours.Add(hexTiles[neighbour]);
+					}
+				}
+			}
+		}
+
+		if(neighbours.Count > 0) {
+			// This is like performing a weighted selection (since it is uniformly distributed) but WAY easier.
+			HexTile neighbour = ListRandom.select(neighbours);
+
+			// Now the actual weighted selection (see how much easier it is now);
+			string type = neighbour.selectType();
+			
+			// Nice and slow.
+			foreach(HexTileWeight hexTileWeight in hexTileWeights) {
+				if(hexTileWeight.hexTile.type == type) {
+					return hexTileWeight.hexTile;
+				}
+			}
+
+			// A certain someone forgot to set up weights for all the types...
+			return null;
+		}
+		else {
+			float totalWeight = 0.0f;
+
+			foreach(HexTileWeight hexTileWeight in hexTileWeights) {
+				totalWeight += hexTileWeight.weight;
+			}
+
+			float value = Random.value * totalWeight;
+
+			float cumulativeWeight = 0.0f;
+
+			foreach(HexTileWeight hexTileWeight in hexTileWeights) {
+				cumulativeWeight += hexTileWeight.weight;
+
+				if(value < cumulativeWeight) {
+					return hexTileWeight.hexTile;
+				}
+			}
+
+			// We canna get here cap'n!
+			return null;
+		}
+	}
+
+
+	private HexTile selectBorderHexTile(int u, int v) {
+		float totalWeight = 0.0f;
+
+		foreach(HexTileWeight borderHexTileWeight in borderHexTileWeights) {
+			totalWeight += borderHexTileWeight.weight;
+		}
+
+		float value = Random.value * totalWeight;
+
+		float cumulativeWeight = 0.0f;
+
+		foreach(HexTileWeight borderHexTileWeight in borderHexTileWeights) {
+			cumulativeWeight += borderHexTileWeight.weight;
+
+			if(value < cumulativeWeight) {
+				return borderHexTileWeight.hexTile;
+			}
+		}
+
+		// We canna get here cap'n!
+		return null;
 	}
 }

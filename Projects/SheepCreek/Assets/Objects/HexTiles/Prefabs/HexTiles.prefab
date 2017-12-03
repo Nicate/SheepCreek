@@ -52,11 +52,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91764ca8b549b70438b851471b7baa41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hexTilePrefabs:
-  - {fileID: 114922297567253662, guid: b90187d55f6aeca44b986331e89c1dd6, type: 2}
-  - {fileID: 114922297567253662, guid: 58b79f69a85da7a43bc981f4bc67d0b7, type: 2}
-  - {fileID: 114922297567253662, guid: d3b4e010bd7f04d4aa2c9475bc18657a, type: 2}
-  - {fileID: 114922297567253662, guid: 259cc03adf3bf20408dec4db28ba5624, type: 2}
+  hexTileWeights:
+  - hexTile: {fileID: 114922297567253662, guid: b90187d55f6aeca44b986331e89c1dd6,
+      type: 2}
+    weight: 1
+  - hexTile: {fileID: 114922297567253662, guid: 58b79f69a85da7a43bc981f4bc67d0b7,
+      type: 2}
+    weight: 2
+  - hexTile: {fileID: 114922297567253662, guid: d3b4e010bd7f04d4aa2c9475bc18657a,
+      type: 2}
+    weight: 12
+  - hexTile: {fileID: 114922297567253662, guid: 259cc03adf3bf20408dec4db28ba5624,
+      type: 2}
+    weight: 6
   radius: 1
   scale: 2
   uExtent: 10
@@ -68,8 +76,10 @@ MonoBehaviour:
   maximumHeight: 1
   heightMean: 0
   heightDeviation: 0.001
-  borderHexTilePrefabs:
-  - {fileID: 114922297567253662, guid: 1240edc0ac9762544af8828569461f8b, type: 2}
+  borderHexTileWeights:
+  - hexTile: {fileID: 114922297567253662, guid: 1240edc0ac9762544af8828569461f8b,
+      type: 2}
+    weight: 1
   borderWidth: 2
 --- !u!114 &114849727523926096
 MonoBehaviour:

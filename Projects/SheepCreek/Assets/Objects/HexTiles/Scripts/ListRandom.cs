@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-/// <summary>
-/// https://answers.unity.com/questions/486626/how-can-i-shuffle-alist.html
-/// </summary>
-public sealed class ShuffleRandom {
+public sealed class ListRandom {
+	/// <summary>
+	/// https://answers.unity.com/questions/486626/how-can-i-shuffle-alist.html
+	/// </summary>
 	public static void shuffle<T>(List<T> list) {
 		T t;
 
@@ -17,5 +17,10 @@ public sealed class ShuffleRandom {
 			list[r] = list[index];
 			list[index] = t;
 		}
+	}
+
+
+	public static T select<T>(List<T> list) {
+		return list[Random.Range(0, list.Count)];
 	}
 }
