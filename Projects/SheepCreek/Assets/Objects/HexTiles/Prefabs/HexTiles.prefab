@@ -55,13 +55,14 @@ MonoBehaviour:
   hexTilePrefab: {fileID: 1121189847663794, guid: b90187d55f6aeca44b986331e89c1dd6,
     type: 2}
   radius: 1
-  uExtent: 20
-  vExtent: 20
+  scale: 2
+  uExtent: 10
+  vExtent: 10
   numberOfCircles: 10
   circleRadiusMinimum: 2
   circleRadiusMaximum: 10
-  minimumHeight: -0.5
-  maximumHeight: 0.5
+  minimumHeight: -1
+  maximumHeight: 1
   heightMean: 0
   heightDeviation: 0.001
 --- !u!114 &114849727523926096
@@ -88,7 +89,7 @@ MonoBehaviour:
   m_IgnoreNavMeshObstacle: 1
   m_OverrideTileSize: 0
   m_TileSize: 256
-  m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.16666667
+  m_OverrideVoxelSize: 1
+  m_VoxelSize: 0.05
   m_BuildHeightMesh: 0
   m_NavMeshData: {fileID: 0}

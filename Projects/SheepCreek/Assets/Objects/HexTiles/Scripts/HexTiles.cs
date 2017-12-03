@@ -9,6 +9,7 @@ public class HexTiles : MonoBehaviour {
 
 	public GameObject hexTilePrefab;
 	public float radius;
+	public float scale;
 
 	public int uExtent;
 	public int vExtent;
@@ -89,8 +90,9 @@ public class HexTiles : MonoBehaviour {
 
 			if(accept(position)) {
 				GameObject hexTile = Instantiate(hexTilePrefab, position, rotation, transform);
+				hexTile.transform.localScale = new Vector3(scale, 10.0f, scale);
 				hexTile.name = "HexTile " + coordinate.u + " " + coordinate.v;
-
+				
 				heights.Add(coordinate, hexTile);
 			}
 		}
@@ -118,8 +120,8 @@ public class HexTiles : MonoBehaviour {
 	private Vector3 calculatePosition(int u, int v) {
 		Vector3 position = new Vector3();
 
-		position.x = (u + v) * cosine * radius;
-		position.z = (u - v) * sine * radius;
+		position.x = (u + v) * cosine * radius * scale;
+		position.z = (u - v) * sine * radius * scale;
 
 		return position;
 	}
