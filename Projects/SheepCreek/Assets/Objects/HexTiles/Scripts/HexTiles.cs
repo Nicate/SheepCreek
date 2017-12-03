@@ -101,7 +101,7 @@ public class HexTiles : MonoBehaviour {
 
 			if(accept(position)) {
 				HexTile hexTile = Instantiate(selectHexTile(coordinate.u, coordinate.v), position, rotation, transform);
-				hexTile.transform.localScale = new Vector3(scale, 10.0f, scale);
+				hexTile.transform.localScale = new Vector3(scale, scale, scale);
 				hexTile.name = "HexTile " + coordinate.u + " " + coordinate.v;
 				
 				hexTiles.Add(coordinate, hexTile);
@@ -127,7 +127,7 @@ public class HexTiles : MonoBehaviour {
 				position.y = calculateHeight(borderCoordinate.u, borderCoordinate.v);
 			
 				HexTile hexTile = Instantiate(selectBorderHexTile(borderCoordinate.u, borderCoordinate.v), position, rotation, transform);
-				hexTile.transform.localScale = new Vector3(scale, 10.0f, scale);
+				hexTile.transform.localScale = new Vector3(scale, scale, scale);
 				hexTile.name = "Border HexTile " + borderCoordinate.u + " " + borderCoordinate.v;
 
 				hexTile.border = true;

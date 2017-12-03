@@ -28,3 +28,4 @@ sysinfo.txt
 # Custom
 /Builds/
 *.blend1
+.autosave/
