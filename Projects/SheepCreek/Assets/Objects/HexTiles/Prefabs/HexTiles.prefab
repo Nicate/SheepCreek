@@ -54,6 +54,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hexTilePrefabs:
   - {fileID: 114922297567253662, guid: b90187d55f6aeca44b986331e89c1dd6, type: 2}
+  - {fileID: 114922297567253662, guid: 58b79f69a85da7a43bc981f4bc67d0b7, type: 2}
+  - {fileID: 114922297567253662, guid: d3b4e010bd7f04d4aa2c9475bc18657a, type: 2}
+  - {fileID: 114922297567253662, guid: 259cc03adf3bf20408dec4db28ba5624, type: 2}
   radius: 1
   scale: 2
   uExtent: 10
@@ -65,6 +68,9 @@ MonoBehaviour:
   maximumHeight: 1
   heightMean: 0
   heightDeviation: 0.001
+  borderHexTilePrefabs:
+  - {fileID: 114922297567253662, guid: 1240edc0ac9762544af8828569461f8b, type: 2}
+  borderWidth: 2
 --- !u!114 &114849727523926096
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 64752396248527814}
   - component: {fileID: 114922297567253662}
   m_Layer: 0
-  m_Name: HexTile
+  m_Name: HexTileDirt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -57,7 +57,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 17d431226c0cd354db82996f2921d854, type: 2}
+  - {fileID: 2100000, guid: 9fef51d51576cc249a8bd2b8b630182a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -109,4 +109,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3f6b251236e65e479e313aa47abd56f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: Generic
+  type: Dirt
+  border: 0

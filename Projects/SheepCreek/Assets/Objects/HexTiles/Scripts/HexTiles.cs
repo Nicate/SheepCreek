@@ -50,7 +50,7 @@ public class HexTiles : MonoBehaviour {
 		}
 	}
 
-	private Dictionary<Coordinate, HexTile> heights = new Dictionary<Coordinate, HexTile>();
+	private Dictionary<Coordinate, HexTile> hexTiles = new Dictionary<Coordinate, HexTile>();
 
 	public float minimumHeight;
 	public float maximumHeight;
@@ -58,9 +58,12 @@ public class HexTiles : MonoBehaviour {
 	public float heightMean;
 	public float heightDeviation;
 
+	public List<HexTile> borderHexTilePrefabs;
+	public int borderWidth;
+	
 
 	public void Start () {
-		// Closest bound.
+		// Calculate the closest bound.
 		float maximumDistance = calculatePosition(uExtent, -vExtent).magnitude;
 
 		for(int count = 0; count < numberOfCircles; count++) {
@@ -72,6 +75,7 @@ public class HexTiles : MonoBehaviour {
 			circles.Add(circle);
 		}
 
+		// Shuffle the list of coordinates.
 		List<Coordinate> coordinates = new List<Coordinate>();
 
 		for(int v = -vExtent; v <= vExtent; v++) {
@@ -82,6 +86,7 @@ public class HexTiles : MonoBehaviour {
 
 		ShuffleRandom.shuffle(coordinates);
 
+		// Place tiles.
 		foreach(Coordinate coordinate in coordinates) {
 			Vector3 position = calculatePosition(coordinate.u, coordinate.v);
 			Quaternion rotation = Quaternion.identity;
@@ -89,16 +94,41 @@ public class HexTiles : MonoBehaviour {
 			position.y = calculateHeight(coordinate.u, coordinate.v);
 
 			if(accept(position)) {
-				HexTile hexTile = Instantiate(hexTilePrefabs[Random.Range(0, hexTilePrefabs.Count - 1)], position, rotation, transform);
+				HexTile hexTile = Instantiate(hexTilePrefabs[Random.Range(0, hexTilePrefabs.Count)], position, rotation, transform);
 				hexTile.transform.localScale = new Vector3(scale, 10.0f, scale);
 				hexTile.name = "HexTile " + coordinate.u + " " + coordinate.v;
 				
-				heights.Add(coordinate, hexTile);
+				hexTiles.Add(coordinate, hexTile);
 			}
 		}
 
+		// Build navigation mesh.
 		NavMeshSurface navigationMeshSurface = GetComponent<NavMeshSurface>();
 		navigationMeshSurface.BuildNavMesh();
+
+		// Make borders.
+		for(int count = 0; count < borderWidth; count++) {
+			HashSet<Coordinate> borderCoordinates = new HashSet<Coordinate>();
+
+			foreach(Coordinate coordinate in hexTiles.Keys) {
+				borderCoordinates.UnionWith(calculateBorder(coordinate.u, coordinate.v));
+			}
+
+			foreach(Coordinate borderCoordinate in borderCoordinates) {
+				Vector3 position = calculatePosition(borderCoordinate.u, borderCoordinate.v);
+				Quaternion rotation = Quaternion.identity;
+
+				position.y = calculateHeight(borderCoordinate.u, borderCoordinate.v);
+			
+				HexTile hexTile = Instantiate(borderHexTilePrefabs[Random.Range(0, borderHexTilePrefabs.Count)], position, rotation, transform);
+				hexTile.transform.localScale = new Vector3(scale, 10.0f, scale);
+				hexTile.name = "Border HexTile " + borderCoordinate.u + " " + borderCoordinate.v;
+
+				hexTile.border = true;
+				
+				hexTiles.Add(borderCoordinate, hexTile);
+			}
+		}
 	}
 
 
@@ -131,13 +161,14 @@ public class HexTiles : MonoBehaviour {
 		float totalHeight = 0.0f;
 		int numberOfNeighbours = 0;
 
+		// TODO Bug where two additional tiles are counted.
 		for(int q = v - 1; q <= v + 1; q++) {
 			for(int p = u - 1; p <= u + 1; p++) {
 				// We ourselves are also a neighbour but since we don't exist yet there is no height.
 				Coordinate neighbour = new Coordinate(p, q);
 
-				if(heights.ContainsKey(neighbour)) {
-					totalHeight += heights[neighbour].transform.position.y;
+				if(hexTiles.ContainsKey(neighbour)) {
+					totalHeight += hexTiles[neighbour].transform.position.y;
 					numberOfNeighbours += 1;
 				}
 			}
@@ -149,5 +180,25 @@ public class HexTiles : MonoBehaviour {
 		else {
 			return Random.Range(minimumHeight, maximumHeight);
 		}
+	}
+
+
+	private List<Coordinate> calculateBorder(int u, int v) {
+		List<Coordinate> coordinates = new List<Coordinate>();
+		
+		for(int q = -1; q <= 1; q++) {
+			for(int p = -1; p <= 1; p++) {
+				// Skip ourselves and the two outliers.
+				if(p != q) {
+					Coordinate neighbour = new Coordinate(u + p, v + q);
+
+					if(!hexTiles.ContainsKey(neighbour)) {
+						coordinates.Add(neighbour);
+					}
+				}
+			}
+		}
+
+		return coordinates;
 	}
 }
