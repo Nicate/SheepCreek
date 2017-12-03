@@ -160,16 +160,17 @@ public class HexTiles : MonoBehaviour {
 	private float calculateHeight(int u, int v) {
 		float totalHeight = 0.0f;
 		int numberOfNeighbours = 0;
-
-		// TODO Bug where two additional tiles are counted.
-		for(int q = v - 1; q <= v + 1; q++) {
-			for(int p = u - 1; p <= u + 1; p++) {
-				// We ourselves are also a neighbour but since we don't exist yet there is no height.
-				Coordinate neighbour = new Coordinate(p, q);
-
-				if(hexTiles.ContainsKey(neighbour)) {
-					totalHeight += hexTiles[neighbour].transform.position.y;
-					numberOfNeighbours += 1;
+		
+		for(int q = -1; q <= 1; q++) {
+			for(int p = -1; p <= 1; p++) {
+				// Skip ourselves and the two outliers.
+				if(p != q) {
+					Coordinate neighbour = new Coordinate(u + p, v + q);
+					
+					if(hexTiles.ContainsKey(neighbour)) {
+						totalHeight += hexTiles[neighbour].transform.position.y;
+						numberOfNeighbours += 1;
+					}
 				}
 			}
 		}
