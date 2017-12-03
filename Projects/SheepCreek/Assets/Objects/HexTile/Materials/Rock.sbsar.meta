@@ -1,14 +1,14 @@
 fileFormatVersion: 2
-guid: 1032f7ff0e091804c98b0f8a93bc92de
-timeCreated: 1512337430
+guid: ec2809479f4b1a645972ded9865c210a
+timeCreated: 1512338263
 licenseType: Free
 SubstanceImporter:
   externalObjects: {}
   serializedVersion: 5
   materialInstances:
   - serializedVersion: 16
-    name: Leaves
-    prototypeName: Leaves
+    name: Rock
+    prototypeName: Rock
     shaderName: 
     shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
     shaderKeywords: _METALLICGLOSSMAP _NORMALMAP _PARALLAXMAP
@@ -37,7 +37,7 @@ SubstanceImporter:
       scale: {x: 1, y: 1}
       generateMipmaps: 1
       generateAllOutputs: 0
-      animationUpdateRate: 0
+      animationUpdateRate: 42
     materialProperties:
       serializedVersion: 3
       texEnvs:
@@ -98,22 +98,22 @@ SubstanceImporter:
       - _Color: {r: 1, g: 1, b: 1, a: 1}
       - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     textureParameters:
-    - name: Leaves_basecolor
+    - name: Rock_basecolor
       alphaSource: 6
       filterMode: 1
       aniso: 1
       wrapMode: 0
-    - name: Leaves_normal
+    - name: Rock_normal
       alphaSource: 0
       filterMode: 1
       aniso: 1
       wrapMode: 0
-    - name: Leaves_metallic
+    - name: Rock_metallic
       alphaSource: 7
       filterMode: 1
       aniso: 1
       wrapMode: 0
-    - name: Leaves_height
+    - name: Rock_height
       alphaSource: 0
       filterMode: 1
       aniso: 1
@@ -121,16 +121,16 @@ SubstanceImporter:
     textureAssignments:
     - shaderProp: _MainTex
       material: {instanceID: 0}
-      baseUID: 3734244375
+      baseUID: 1456298607
     - shaderProp: _BumpMap
       material: {instanceID: 0}
-      baseUID: 3734244373
+      baseUID: 1456298605
     - shaderProp: _MetallicGlossMap
       material: {instanceID: 0}
-      baseUID: 3734244369
+      baseUID: 1456298601
     - shaderProp: _ParallaxMap
       material: {instanceID: 0}
-      baseUID: 3673892576
+      baseUID: 1386377368
     buildTargetSettings:
     - serializedVersion: 2
       buildTarget: 
