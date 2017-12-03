@@ -7,7 +7,7 @@ public class HexTiles : MonoBehaviour {
 	private static readonly float sine = Mathf.Sin(Mathf.PI / 6.0f);
 	
 
-	public GameObject hexTilePrefab;
+	public List<HexTile> hexTilePrefabs;
 	public float radius;
 	public float scale;
 
@@ -50,7 +50,7 @@ public class HexTiles : MonoBehaviour {
 		}
 	}
 
-	private Dictionary<Coordinate, GameObject> heights = new Dictionary<Coordinate, GameObject>();
+	private Dictionary<Coordinate, HexTile> heights = new Dictionary<Coordinate, HexTile>();
 
 	public float minimumHeight;
 	public float maximumHeight;
@@ -89,7 +89,7 @@ public class HexTiles : MonoBehaviour {
 			position.y = calculateHeight(coordinate.u, coordinate.v);
 
 			if(accept(position)) {
-				GameObject hexTile = Instantiate(hexTilePrefab, position, rotation, transform);
+				HexTile hexTile = Instantiate(hexTilePrefabs[Random.Range(0, hexTilePrefabs.Count - 1)], position, rotation, transform);
 				hexTile.transform.localScale = new Vector3(scale, 10.0f, scale);
 				hexTile.name = "HexTile " + coordinate.u + " " + coordinate.v;
 				

@@ -231,6 +231,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Objects\HexTile\Scripts\HexTile.cs" />
     <Compile Include="Assets\Objects\HexTiles\Scripts\GaussianRandom.cs" />
     <Compile Include="Assets\Objects\HexTiles\Scripts\HexTiles.cs" />
     <Compile Include="Assets\Objects\HexTiles\Scripts\ShuffleRandom.cs" />

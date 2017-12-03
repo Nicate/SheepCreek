@@ -52,8 +52,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91764ca8b549b70438b851471b7baa41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hexTilePrefab: {fileID: 1121189847663794, guid: b90187d55f6aeca44b986331e89c1dd6,
-    type: 2}
+  hexTilePrefabs:
+  - {fileID: 114922297567253662, guid: b90187d55f6aeca44b986331e89c1dd6, type: 2}
   radius: 1
   scale: 2
   uExtent: 10
