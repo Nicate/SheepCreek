@@ -235,6 +235,8 @@
     <Compile Include="Assets\Objects\HexTiles\Scripts\GaussianRandom.cs" />
     <Compile Include="Assets\Objects\HexTiles\Scripts\HexTiles.cs" />
     <Compile Include="Assets\Objects\HexTiles\Scripts\ListRandom.cs" />
+    <Compile Include="Assets\Objects\Sheep\Scripts\Billboard.cs" />
+    <Compile Include="Assets\Objects\Sheep\Scripts\Sheep.cs" />
     <Compile Include="Assets\Sounds\Music\Music.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
