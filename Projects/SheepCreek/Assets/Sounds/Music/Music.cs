@@ -13,6 +13,8 @@ public class Music : MonoBehaviour {
 	public int fadeIn;
 	public int fadeOut;
 
+	public int introFade;
+
 	private float transitionIn;
 	private float transitionOut;
 
@@ -26,7 +28,10 @@ public class Music : MonoBehaviour {
 		transitionIn = quarterNote * fadeIn;
 		transitionOut = quarterNote * fadeOut;
 
-		level = 0;
+		level = 1;
+
+		// Fade in the music.
+		levels[level].TransitionTo(quarterNote * introFade);
 	}
 
 
@@ -39,7 +44,8 @@ public class Music : MonoBehaviour {
 	}
 
 	public void decreaseLevel() {
-		if(level > 0) {
+		// Don't go back down to the silent level.
+		if(level > 1) {
 			level -= 1;
 
 			levels[level].TransitionTo(transitionOut);

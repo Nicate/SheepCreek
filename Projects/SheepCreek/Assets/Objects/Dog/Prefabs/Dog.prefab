@@ -19,8 +19,8 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4747393173855638}
-  - component: {fileID: 114522744745368616}
   - component: {fileID: 195411505740037606}
+  - component: {fileID: 114753439806581360}
   m_Layer: 0
   m_Name: Dog
   m_TagString: Untagged
@@ -84,7 +84,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   billboardCamera: {fileID: 0}
---- !u!114 &114522744745368616
+--- !u!114 &114753439806581360
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -92,7 +92,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1315160715844758}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 70b80319cb4ed76409f45496c37aface, type: 3}
+  m_Script: {fileID: 11500000, guid: b721e245bde971346953515ea063a1b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!195 &195411505740037606

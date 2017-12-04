@@ -19,8 +19,8 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4747393173855638}
-  - component: {fileID: 114522744745368616}
   - component: {fileID: 195411505740037606}
+  - component: {fileID: 114522744745368616}
   m_Layer: 0
   m_Name: Sheep
   m_TagString: Untagged

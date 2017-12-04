@@ -19,8 +19,8 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4547163238176920}
-  - component: {fileID: 114402460044719634}
   - component: {fileID: 195380756260819408}
+  - component: {fileID: 114402460044719634}
   m_Layer: 0
   m_Name: BlackSheep
   m_TagString: Untagged
