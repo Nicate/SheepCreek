@@ -231,17 +231,7 @@ public class HexTiles : MonoBehaviour {
 			HexTile neighbour = ListRandom.select(neighbours);
 
 			// Now the actual weighted selection (see how much easier it is now);
-			string type = neighbour.selectType();
-			
-			// Nice and slow.
-			foreach(HexTileWeight hexTileWeight in hexTileWeights) {
-				if(hexTileWeight.hexTile.type == type) {
-					return hexTileWeight.hexTile;
-				}
-			}
-
-			// A certain someone forgot to set up weights for all the types...
-			return null;
+			return neighbour.selectHexTile();
 		}
 		else {
 			float totalWeight = 0.0f;

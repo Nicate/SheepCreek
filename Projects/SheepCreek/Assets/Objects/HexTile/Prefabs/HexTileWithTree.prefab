@@ -197,14 +197,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3f6b251236e65e479e313aa47abd56f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: Grass
-  typeWeights:
-  - type: Rock
+  type: Tree
+  hexTileWeights:
+  - hexTile: {fileID: 114922297567253662, guid: d3b4e010bd7f04d4aa2c9475bc18657a,
+      type: 2}
     weight: 1
-  - type: Dirt
-    weight: 2
-  - type: Grass
-    weight: 12
-  - type: Farm
-    weight: 6
   border: 0

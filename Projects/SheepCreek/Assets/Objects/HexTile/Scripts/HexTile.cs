@@ -6,36 +6,37 @@ public class HexTile : MonoBehaviour {
 	public string type;
 
 	[System.Serializable]
-	public struct TypeWeight {
-		public string type;
+	public struct HexTileWeight {
+		public HexTile hexTile;
 		public float weight;
 	}
 
-	public List<TypeWeight> typeWeights;
+	public List<HexTileWeight> hexTileWeights;
 
 	[HideInInspector]
 	public bool border;
 
 
-	public string selectType() {
+	public HexTile selectHexTile() {
 		float totalWeight = 0.0f;
 
-		foreach(TypeWeight typeWeight in typeWeights) {
-			totalWeight += typeWeight.weight;
+		foreach(HexTileWeight hexTileWeight in hexTileWeights) {
+			totalWeight += hexTileWeight.weight;
 		}
 
 		float value = Random.value * totalWeight;
 
 		float cumulativeWeight = 0.0f;
 
-		foreach(TypeWeight typeWeight in typeWeights) {
-			cumulativeWeight += typeWeight.weight;
+		foreach(HexTileWeight hexTileWeight in hexTileWeights) {
+			cumulativeWeight += hexTileWeight.weight;
 
 			if(value < cumulativeWeight) {
-				return typeWeight.type;
+				return hexTileWeight.hexTile;
 			}
 		}
 
-		return "We're never gonna get here.";
+		// We're never gonna get here.
+		return null;
 	}
 }

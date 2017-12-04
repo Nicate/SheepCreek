@@ -110,13 +110,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: Grass
-  typeWeights:
-  - type: Rock
+  hexTileWeights:
+  - hexTile: {fileID: 114922297567253662, guid: b90187d55f6aeca44b986331e89c1dd6,
+      type: 2}
     weight: 1
-  - type: Dirt
+  - hexTile: {fileID: 114922297567253662, guid: 58b79f69a85da7a43bc981f4bc67d0b7,
+      type: 2}
     weight: 2
-  - type: Grass
+  - hexTile: {fileID: 114922297567253662}
     weight: 12
-  - type: Farm
+  - hexTile: {fileID: 114922297567253662, guid: 259cc03adf3bf20408dec4db28ba5624,
+      type: 2}
     weight: 6
+  - hexTile: {fileID: 114922297567253662, guid: 374b31a3be913ad4283f1150c36292bc,
+      type: 2}
+    weight: 1
+  - hexTile: {fileID: 114922297567253662, guid: ce5b29378186d6f4ea50d8d78d2d1535,
+      type: 2}
+    weight: 1
   border: 0
