@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: c4b12471c9e17624f84aad6e0a78678d
-timeCreated: 1512246804
+guid: 5c9ecffe6318cdc4f8455103821bc722
+timeCreated: 1512347967
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
@@ -10,13 +10,13 @@ ModelImporter:
     2300000: //RootNode
     3300000: //RootNode
     4300000: HexTile
-    6400000: //RootNode
+    4300002: HexTileCollider
   externalObjects:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Material
-    second: {fileID: 2100000, guid: d9472b1c09bba484b9e70c038ee343fa, type: 2}
+    second: {fileID: 2100000, guid: 067c067b7f333dd45919d40b613eb65e, type: 2}
   materials:
     importMaterials: 0
     materialName: 0

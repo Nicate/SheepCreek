@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 64752396248527814}
   - component: {fileID: 114922297567253662}
   m_Layer: 0
-  m_Name: HexTileFarm
+  m_Name: HexTileWithTree
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -57,7 +57,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 9565cd8798282914a86eff627d4135a6, type: 2}
+  - {fileID: 1345727989, guid: 1032f7ff0e091804c98b0f8a93bc92de, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -94,10 +94,10 @@ MeshCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Convex: 0
+  m_Convex: 1
   m_InflateMesh: 0
   m_SkinWidth: 0.01
-  m_Mesh: {fileID: 4300000, guid: c4b12471c9e17624f84aad6e0a78678d, type: 3}
+  m_Mesh: {fileID: 4300002, guid: 5c9ecffe6318cdc4f8455103821bc722, type: 3}
 --- !u!114 &114922297567253662
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -109,14 +109,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3f6b251236e65e479e313aa47abd56f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: Farm
+  type: Grass
   typeWeights:
   - type: Rock
     weight: 1
   - type: Dirt
-    weight: 1
-  - type: Grass
     weight: 2
+  - type: Grass
+    weight: 12
   - type: Farm
     weight: 6
   border: 0

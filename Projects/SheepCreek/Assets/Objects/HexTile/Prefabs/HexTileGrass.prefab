@@ -57,7 +57,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 1345727989, guid: 1032f7ff0e091804c98b0f8a93bc92de, type: 3}
+  - {fileID: -1655045299, guid: 314c10c4e1354244b866af5d9a784729, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -94,10 +94,10 @@ MeshCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Convex: 0
+  m_Convex: 1
   m_InflateMesh: 0
   m_SkinWidth: 0.01
-  m_Mesh: {fileID: 4300000, guid: c4b12471c9e17624f84aad6e0a78678d, type: 3}
+  m_Mesh: {fileID: 4300002, guid: 5c9ecffe6318cdc4f8455103821bc722, type: 3}
 --- !u!114 &114922297567253662
 MonoBehaviour:
   m_ObjectHideFlags: 1

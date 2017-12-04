@@ -79,6 +79,12 @@ MonoBehaviour:
   borderHexTileWeights:
   - hexTile: {fileID: 114922297567253662, guid: 1240edc0ac9762544af8828569461f8b,
       type: 2}
+    weight: 2
+  - hexTile: {fileID: 114922297567253662, guid: d51bb31bc36e4344c960badaa069a22b,
+      type: 2}
+    weight: 1
+  - hexTile: {fileID: 114922297567253662, guid: 4babe009345ae8b40a9fcc4ef470bfab,
+      type: 2}
     weight: 1
   borderWidth: 2
 --- !u!114 &114849727523926096

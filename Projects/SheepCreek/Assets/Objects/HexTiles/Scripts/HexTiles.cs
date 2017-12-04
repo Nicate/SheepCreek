@@ -108,10 +108,6 @@ public class HexTiles : MonoBehaviour {
 			}
 		}
 
-		// Build navigation mesh.
-		NavMeshSurface navigationMeshSurface = GetComponent<NavMeshSurface>();
-		navigationMeshSurface.BuildNavMesh();
-
 		// Make borders.
 		for(int count = 0; count < borderWidth; count++) {
 			HashSet<Coordinate> borderCoordinates = new HashSet<Coordinate>();
@@ -135,6 +131,10 @@ public class HexTiles : MonoBehaviour {
 				hexTiles.Add(borderCoordinate, hexTile);
 			}
 		}
+
+		// Build navigation mesh.
+		NavMeshSurface navigationMeshSurface = GetComponent<NavMeshSurface>();
+		navigationMeshSurface.BuildNavMesh();
 	}
 
 

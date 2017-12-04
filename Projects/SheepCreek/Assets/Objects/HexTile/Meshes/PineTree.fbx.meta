@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: c4b12471c9e17624f84aad6e0a78678d
-timeCreated: 1512246804
+guid: 4e07192bcbaa93b4eaf70dee98904eb9
+timeCreated: 1512346506
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
@@ -9,14 +9,18 @@ ModelImporter:
     400000: //RootNode
     2300000: //RootNode
     3300000: //RootNode
-    4300000: HexTile
-    6400000: //RootNode
+    4300000: PineTree
   externalObjects:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Material
-    second: {fileID: 2100000, guid: d9472b1c09bba484b9e70c038ee343fa, type: 2}
+      name: PineMaterial
+    second: {fileID: 2100000, guid: 7f7dbfc68f95ed4439e654e282422f87, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: TrunkMaterial
+    second: {fileID: 2100000, guid: e16bd7514d2e6fb4d899e91b76bff228, type: 2}
   materials:
     importMaterials: 0
     materialName: 0
