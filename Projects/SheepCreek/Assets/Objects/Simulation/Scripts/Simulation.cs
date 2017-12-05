@@ -12,9 +12,24 @@ public class Simulation : MonoBehaviour {
 
 	public List<SheepWeight> sheepWeights;
 
+	public HexTiles hexTiles;
+
+	public int numberOfSheep;
+
+	
+	private Dog dog;
+	private List<Sheep> sheep = new List<Sheep>();
+
 
 	public void Start() {
-		
+		dog = Instantiate(dogPrefab, hexTiles.getRandomPosition(), Quaternion.identity, transform);
+		dog.name = "Dog";
+
+		for(int count = 0; count < numberOfSheep; count++) {
+			Sheep aSheep = Instantiate(selectSheep(), hexTiles.getRandomPosition(), Quaternion.identity, transform);
+			aSheep.name = "Sheep" + count;
+			sheep.Add(aSheep);
+		}
 	}
 	
 	public void Update() {

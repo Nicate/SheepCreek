@@ -280,4 +280,26 @@ public class HexTiles : MonoBehaviour {
 		// We canna get here cap'n!
 		return null;
 	}
+
+
+	public Vector3 getRandomPosition() {
+		// Find a non-border hextile.
+		HexTile hexTile;
+		do {
+			hexTile = ListRandom.select(new List<HexTile>(hexTiles.Values));
+		}
+		while(hexTile.border);
+
+		// Find the closest navigable point.
+		NavMeshHit hit;
+		if(NavMesh.SamplePosition(hexTile.transform.position, out hit, radius * scale, -1)) {
+			// For some reason SamplePosition does not return a position ON the NavMesh.
+			return new Vector3(hit.position.x, hexTile.transform.position.y, hit.position.z);
+		}
+		else {
+			Debug.Log("Could not sample NavMesh position.");
+
+			return hexTile.transform.position;
+		}
+	}
 }
