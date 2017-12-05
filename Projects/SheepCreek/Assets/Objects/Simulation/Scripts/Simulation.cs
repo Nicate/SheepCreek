@@ -16,24 +16,50 @@ public class Simulation : MonoBehaviour {
 
 	public int numberOfSheep;
 
+	public Music music;
+
 	
-	private Dog dog;
-	private List<Sheep> sheep = new List<Sheep>();
+	[HideInInspector]
+	public Dog dog;
+	
+	[HideInInspector]
+	public List<Sheep> sheep = new List<Sheep>();
+
+	private int oldSheepCount = 0;
+
+	public int level2Count;
+	public int level3Count;
+	public int level4Count;
 
 
 	public void Start() {
 		dog = Instantiate(dogPrefab, hexTiles.getRandomPosition(), Quaternion.identity, transform);
 		dog.name = "Dog";
+		dog.simulation = this;
 
 		for(int count = 0; count < numberOfSheep; count++) {
 			Sheep aSheep = Instantiate(selectSheep(), hexTiles.getRandomPosition(), Quaternion.identity, transform);
 			aSheep.name = "Sheep" + count;
+			aSheep.simulation = this;
 			sheep.Add(aSheep);
 		}
 	}
 	
 	public void Update() {
-		
+		// We can only go up right now.
+		if(oldSheepCount < level2Count && sheep.Count >= level2Count) {
+			music.increaseLevel();
+		}
+
+		if(oldSheepCount < level3Count && sheep.Count >= level3Count) {
+			music.increaseLevel();
+		}
+
+		if(oldSheepCount < level4Count && sheep.Count >= level4Count) {
+			music.increaseLevel();
+		}
+
+		oldSheepCount = sheep.Count;
 	}
 
 
@@ -58,5 +84,13 @@ public class Simulation : MonoBehaviour {
 
 		// We canna get here cap'n!
 		return null;
+	}
+
+
+	public void makeBaby(Vector3 position) {
+		Sheep aSheep = Instantiate(selectSheep(), position, Quaternion.identity, transform);
+		aSheep.name = "Baby";
+		aSheep.simulation = this;
+		sheep.Add(aSheep);
 	}
 }
