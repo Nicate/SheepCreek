@@ -27,29 +27,22 @@ public class Dog : MonoBehaviour {
 		NavMeshAgent agent = GetComponent<NavMeshAgent>();
 		SpriteRenderer sprite = GetComponentInChildren<SpriteRenderer>();
 
-		Vector3 direction = new Vector3();
-
+		// TODO
 		if(Input.GetKey(KeyCode.LeftArrow)) {
-			direction.x = -1.0f;
-
 			sprite.flipX = false;
 		}
 		else if(Input.GetKey(KeyCode.RightArrow)) {
-			direction.x = 1.0f;
 
 			sprite.flipX = true;
 		}
+		
+		if(Input.GetMouseButtonDown(0)) {
+			Vector3? target = simulation.hexTiles.pickSurface();
 
-		if(Input.GetKey(KeyCode.DownArrow)) {
-			direction.z = -1.0f;
+			if(target.HasValue) {
+				agent.destination = target.Value;
+			}
 		}
-		else if(Input.GetKey(KeyCode.UpArrow)) {
-			direction.z = 1.0f;
-		}
-
-		Vector3 target = transform.position + direction.normalized;
-
-		agent.destination = target;
 
 		// Woof.
 		if(Input.GetKey(KeyCode.Space)) {

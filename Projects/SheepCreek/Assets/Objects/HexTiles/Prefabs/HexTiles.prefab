@@ -20,7 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4025250181751896}
   - component: {fileID: 114098232994418702}
-  - component: {fileID: 114849727523926096}
+  - component: {fileID: 114625205314497338}
   m_Layer: 0
   m_Name: HexTiles
   m_TagString: Untagged
@@ -87,7 +87,7 @@ MonoBehaviour:
       type: 2}
     weight: 1
   borderWidth: 2
---- !u!114 &114849727523926096
+--- !u!114 &114625205314497338
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}

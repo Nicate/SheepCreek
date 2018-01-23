@@ -66,6 +66,8 @@ public class HexTiles : MonoBehaviour {
 
 	public List<HexTileWeight> borderHexTileWeights;
 	public int borderWidth;
+
+	private MeshCollider surface;
 	
 
 	public void Start () {
@@ -132,9 +134,8 @@ public class HexTiles : MonoBehaviour {
 			}
 		}
 
-		// Build navigation mesh.
-		NavMeshSurface navigationMeshSurface = GetComponent<NavMeshSurface>();
-		navigationMeshSurface.BuildNavMesh();
+		// Build surface.
+		generateSurface();
 	}
 
 
@@ -161,7 +162,6 @@ public class HexTiles : MonoBehaviour {
 
 		return position;
 	}
-
 
 	private float calculateHeight(int u, int v) {
 		float totalHeight = 0.0f;
@@ -257,7 +257,6 @@ public class HexTiles : MonoBehaviour {
 		}
 	}
 
-
 	private HexTile selectBorderHexTile(int u, int v) {
 		float totalWeight = 0.0f;
 
@@ -289,17 +288,64 @@ public class HexTiles : MonoBehaviour {
 			hexTile = ListRandom.select(new List<HexTile>(hexTiles.Values));
 		}
 		while(hexTile.border);
-
+		
 		// Find the closest navigable point.
-		NavMeshHit hit;
-		if(NavMesh.SamplePosition(hexTile.transform.position, out hit, radius * scale, -1)) {
-			// For some reason SamplePosition does not return a position ON the NavMesh.
-			return new Vector3(hit.position.x, hexTile.transform.position.y, hit.position.z);
+		Vector3? position = sampleSurface(hexTile.transform.position, radius * scale);
+
+		if(position.HasValue) {
+			return position.Value;
 		}
 		else {
 			Debug.Log("Could not sample NavMesh position.");
 
 			return hexTile.transform.position;
 		}
+	}
+
+
+	private void generateSurface() {
+		// Build navigation mesh.
+		NavMeshSurface navigationMeshSurface = GetComponent<NavMeshSurface>();
+		navigationMeshSurface.BuildNavMesh();
+
+		// Build surface mesh.
+		var triangulation = NavMesh.CalculateTriangulation();
+
+		Mesh mesh = new Mesh();
+		mesh.vertices = triangulation.vertices;
+		mesh.triangles = triangulation.indices;
+		mesh.RecalculateNormals();
+
+		surface = gameObject.AddComponent<MeshCollider>();
+		surface.sharedMesh = mesh;
+	}
+
+	public Vector3? sampleSurface(Vector3 position, float distance) {
+		NavMeshHit hit;
+
+		if(NavMesh.SamplePosition(position, out hit, distance, -1)) {
+			// For some reason SamplePosition does not return a position ON the NavMesh.
+			return new Vector3(hit.position.x, position.y, hit.position.z);
+		}
+
+		return null;
+	}
+
+	public Vector3? hitSurface(Ray ray, float distance) {
+		RaycastHit hit;
+
+		if(surface.Raycast(ray, out hit, distance)) {
+			return hit.point;
+		}
+
+		return null;
+	}
+
+	public Vector3? pickSurface() {
+		Camera camera = Camera.main;
+
+		Ray ray = camera.ScreenPointToRay(Input.mousePosition);
+
+		return hitSurface(ray, camera.farClipPlane);
 	}
 }
