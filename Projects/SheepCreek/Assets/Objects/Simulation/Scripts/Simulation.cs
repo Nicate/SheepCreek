@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Simulation : MonoBehaviour {
 	public Dog dogPrefab;
@@ -32,6 +33,9 @@ public class Simulation : MonoBehaviour {
 	public int level4Count;
 
 
+	public Text text;
+
+
 	public void Start() {
 		dog = Instantiate(dogPrefab, hexTiles.getRandomPosition(), Quaternion.identity, transform);
 		dog.name = "Dog";
@@ -60,6 +64,15 @@ public class Simulation : MonoBehaviour {
 		}
 
 		oldSheepCount = sheep.Count;
+
+		// TODO This is just a basic win/score condition.
+		if(Time.timeSinceLevelLoad > 120.0f) {
+			Time.timeScale = 0.0f;
+
+			text.text = "Your score: " + sheep.Count + "\n\nPress Alt-F4 to close the game.";
+
+			text.enabled = true;
+		}
 	}
 
 
