@@ -169,14 +169,15 @@ public class HexTiles : MonoBehaviour {
 		
 		for(int q = -1; q <= 1; q++) {
 			for(int p = -1; p <= 1; p++) {
-				// Skip ourselves and the two outliers.
-				if(p != q) {
-					Coordinate neighbour = new Coordinate(u + p, v + q);
+				// This has a bug where two outlier tiles are also counted (normally one would check that p != q).
+				// But this seems to produce more navigable terrain, so it's a feature! :P
+				// Note that due to the lack of this check the calculation also counts ourselves,
+				// but since we don't exist yet there is no height to include, so everything works out.
+				Coordinate neighbour = new Coordinate(u + p, v + q);
 					
-					if(hexTiles.ContainsKey(neighbour)) {
-						totalHeight += hexTiles[neighbour].transform.position.y;
-						numberOfNeighbours += 1;
-					}
+				if(hexTiles.ContainsKey(neighbour)) {
+					totalHeight += hexTiles[neighbour].transform.position.y;
+					numberOfNeighbours += 1;
 				}
 			}
 		}
