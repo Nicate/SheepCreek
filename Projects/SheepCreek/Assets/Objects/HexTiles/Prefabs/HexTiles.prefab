@@ -86,7 +86,7 @@ MonoBehaviour:
   - hexTile: {fileID: 114922297567253662, guid: 4babe009345ae8b40a9fcc4ef470bfab,
       type: 2}
     weight: 1
-  borderWidth: 2
+  borderWidth: 10
 --- !u!114 &114625205314497338
 MonoBehaviour:
   m_ObjectHideFlags: 1

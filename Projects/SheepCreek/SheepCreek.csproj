@@ -232,6 +232,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Objects\Dog\Scripts\Dog.cs" />
+    <Compile Include="Assets\Objects\Dog\Scripts\Tracker.cs" />
     <Compile Include="Assets\Objects\HexTile\Scripts\HexTile.cs" />
     <Compile Include="Assets\Objects\HexTiles\Scripts\GaussianRandom.cs" />
     <Compile Include="Assets\Objects\HexTiles\Scripts\HexTiles.cs" />

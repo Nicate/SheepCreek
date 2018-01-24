@@ -13,12 +13,12 @@ public class Dog : MonoBehaviour {
 
 
 	public void Start() {
-		Camera.main.transform.SetParent(boom.transform);
+		/*Camera.main.transform.SetParent(boom.transform);
 		Camera.main.transform.localPosition = new Vector3();
-		Camera.main.transform.localRotation = Quaternion.identity;
+		Camera.main.transform.localRotation = Quaternion.identity;*/
 
-		boomPosition = boom.transform.localPosition;
-		boomRotation = boom.transform.rotation;
+		//boomPosition = boom.transform.localPosition;
+		//boomRotation = boom.transform.rotation;
 	}
 
 	
@@ -32,7 +32,6 @@ public class Dog : MonoBehaviour {
 			sprite.flipX = false;
 		}
 		else if(Input.GetKey(KeyCode.RightArrow)) {
-
 			sprite.flipX = true;
 		}
 		
@@ -73,7 +72,7 @@ public class Dog : MonoBehaviour {
 
 	public void LateUpdate() {
 		// Fix boom.
-		boom.transform.position = transform.position + boomPosition;
-		boom.transform.rotation = boomRotation;
+		//boom.transform.position = transform.position + boomPosition;
+		//boom.transform.rotation = boomRotation;
 	}
 }
