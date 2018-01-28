@@ -13,7 +13,8 @@ public class Billboard : MonoBehaviour {
 		updateRotation();
 	}
 	
-	public void Update () {
+
+	public void LateUpdate () {
 		updateRotation();
 	}
 
