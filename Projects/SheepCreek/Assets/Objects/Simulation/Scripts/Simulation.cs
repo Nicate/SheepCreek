@@ -13,9 +13,10 @@ public class Simulation : MonoBehaviour {
 
 	public List<SheepWeight> sheepWeights;
 
-	public HexTiles hexTiles;
-
 	public int numberOfSheep;
+
+
+	public HexTiles hexTiles;
 
 	public Music music;
 
@@ -26,11 +27,12 @@ public class Simulation : MonoBehaviour {
 	[HideInInspector]
 	public List<Sheep> sheep = new List<Sheep>();
 
-	private int oldSheepCount = 0;
 
 	public int level2Count;
 	public int level3Count;
 	public int level4Count;
+
+	private int oldSheepCount = 0;
 
 
 	public Text text;
@@ -102,7 +104,7 @@ public class Simulation : MonoBehaviour {
 
 	public void makeBaby(Vector3 position) {
 		Sheep aSheep = Instantiate(selectSheep(), position, Quaternion.identity, transform);
-		aSheep.name = "Baby";
+		aSheep.name = "Sheep" + sheep.Count;
 		aSheep.simulation = this;
 		sheep.Add(aSheep);
 	}
